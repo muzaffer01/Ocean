@@ -23,7 +23,7 @@ public class FirstTest {
 		}
 	
 	@Test
-	public void sufwebinvoke() throws InterruptedException {
+	public void formSubmitionVerification() throws InterruptedException {
 		System.setProperty("webdriver.chrome.driver", "D:\\java eclipse\\MyProjects\\Ocean\\PearlWebAutomation\\src\\test\\resources\\Binaries\\chromedriver.exe" );
 		WebDriver driver= new ChromeDriver(); 
 		

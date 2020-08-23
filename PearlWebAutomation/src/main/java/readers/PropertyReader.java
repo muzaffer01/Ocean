@@ -34,16 +34,17 @@ public class PropertyReader {
 
 }
 	
-	public static void main(String[] args) {
-		
-		PropertyReader abc = new PropertyReader();
-		String a = abc.getvaluefrompropertyreader("SIT_UN");
-		System.out.println(a);
-		
-		
-		
-		
-		}
+/*
+ * public static void main(String[] args) {
+ * 
+ * PropertyReader abc = new PropertyReader(); String a =
+ * abc.getvaluefrompropertyreader("SIT_UN"); System.out.println(a);
+ * 
+ * 
+ * 
+ * 
+ * }
+ */
 	
 	
 }
