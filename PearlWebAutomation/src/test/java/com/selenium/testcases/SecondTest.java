@@ -10,42 +10,25 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import readers.PropertyReader;
-import readers.ExcelReader;
+import com.muzzafar.readers.ExcelReader;
+import com.muzzafar.readers.PropertyReader;
 
 
-public class SecondTest {
+public class SecondTest extends TestBase{
 	
 	String Sheetname="TestData1";
 	
 	@Test
 	public void formSubmitionVerificatio() throws InterruptedException, IOException {
-		//Sheetname="TestData";
-		System.setProperty("webdriver.chrome.driver", "D:\\java eclipse\\MyProjects\\Ocean\\PearlWebAutomation\\src\\test\\resources\\Binaries\\chromedriver.exe" );
-		WebDriver driver= new ChromeDriver(); 
-		
-		PropertyReader a= new PropertyReader();
-		String suf=a.getvaluefrompropertyreader("UAT");
-		//driver.get("https://www3.ntu.edu.sg/home/ehchua/programming/webprogramming/jsdemo/JSFormValidation.html");
-		driver.get(suf);
-		
 		ExcelReader excelobj= new ExcelReader();
+		System.out.println(driver);
 		String name=excelobj.readexcel(2, 0, Sheetname);
-			
-		
 		driver.findElement(By.xpath("//input[@id='txtName']")).sendKeys(name);
-	
-
-		driver.findElement(By.xpath("//input[@id='txtAddress']")).sendKeys("this is test2");
-		
+		driver.findElement(By.xpath("//input[@id='txtAddress']")).sendKeys("this is test2");	
 		driver.findElement(By.xpath("//input[@id=\'txtZipcode\']")).sendKeys("this is test3");
-		
 		WebElement country = driver.findElement(By.xpath("//select[@id='selCountry']"));
 		Select Mycountry= new Select(country);
 		Mycountry.selectByVisibleText("AA");
-		
-		
-		
 		driver.findElement(By.xpath("//input[@value='m']")).click();
 		driver.findElement(By.xpath("//input[@value='r']")).click();
 		driver.findElement(By.xpath("//input[@id='txtPhone']")).sendKeys("123456");
@@ -53,27 +36,12 @@ public class SecondTest {
 		driver.findElement(By.xpath("//input[@id='txtPassword']")).sendKeys("abcdef");
 		driver.findElement(By.xpath("//input[@id='txtPWVerified']")).sendKeys("abcdef");
 		driver.findElement(By.xpath("//input[@id='btnSubmit']")).click();
-		
 		String ele= driver.findElement(By.xpath("//td[@id='elmZipcodeError']")).getText();
 		System.out.println(ele);
 		String ExpectedString = "Please enter a 5-digit zip code!";
-		
 		Assert.assertEquals(ele, ExpectedString);
-
 		Thread.sleep(3000);
-		driver.close();
-		driver.quit();
-		
-		
-		
-		}
-	
-
-
-
-	
-
-	
+	}
 
 	@Test
 	public void randomtest2() {
