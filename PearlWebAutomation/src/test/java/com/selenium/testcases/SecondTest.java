@@ -1,17 +1,23 @@
 package com.selenium.testcases;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.muzzafar.readers.ExcelReader;
 import com.muzzafar.readers.PropertyReader;
+import com.muzzafar.util.Configuration;
+import com.selenium.muzzar.util.Utils;
 
 
 public class SecondTest extends TestBase{
@@ -20,6 +26,7 @@ public class SecondTest extends TestBase{
 	
 	@Test
 	public void formSubmitionVerificatio() throws InterruptedException, IOException {
+		
 		ExcelReader excelobj= new ExcelReader();
 		System.out.println(driver);
 		String name=excelobj.readexcel(2, 0, Sheetname);
@@ -39,6 +46,16 @@ public class SecondTest extends TestBase{
 		String ele= driver.findElement(By.xpath("//td[@id='elmZipcodeError']")).getText();
 		System.out.println(ele);
 		String ExpectedString = "Please enter a 5-digit zip code!";
+		if (ele.equalsIgnoreCase(ExpectedString)) {
+			Utils u = new Utils();
+			try {
+				u.takeSnapShot(driver);
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+		}
+		
 		Assert.assertEquals(ele, ExpectedString);
 		Thread.sleep(3000);
 	}

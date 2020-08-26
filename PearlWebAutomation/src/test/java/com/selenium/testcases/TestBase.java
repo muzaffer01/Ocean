@@ -23,7 +23,6 @@ public class TestBase {
 			System.out.println("This is UAT");
 			String getuaturl=mypropertyreader.getvaluefrompropertyreader("UAT");
 			driver.get(getuaturl);
-			
 			break;
 			
 		case "SIT":
