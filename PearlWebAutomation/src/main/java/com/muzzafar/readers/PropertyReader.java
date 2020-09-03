@@ -20,8 +20,6 @@ public class PropertyReader {
             ex.printStackTrace();
         }
 		return myreturnvalue;
-		
-
 }
 	
 /*

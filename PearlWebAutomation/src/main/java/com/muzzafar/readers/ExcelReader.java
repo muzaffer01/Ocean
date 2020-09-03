@@ -4,10 +4,15 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.muzzafar.util.Configuration;
+
+import net.bytebuddy.implementation.bytecode.Throw;
 
 public class ExcelReader {
 	
@@ -17,7 +22,6 @@ public class ExcelReader {
 		try {
 			testdatareader = new FileInputStream(fileName);
 			//Reading the complete file along with sheets
-			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -32,18 +36,33 @@ public class ExcelReader {
 		 //read specific sheet
 		 return getsheetvalue;
 	}
+	
+	
+	
+	
+	public String readexcel(int myrow, int mycol, String mysheetname) throws Exception {
+	XSSFSheet mygetsheetvalue=readFile(Configuration.PROJECT_PATH+"/src/test/resources/TestData.xlsx", mysheetname);
+	Cell cell=mygetsheetvalue.getRow(myrow-1).getCell(mycol-1);
+if (cell!=null) {
+		String value=mygetsheetvalue.getRow(myrow-1).getCell(mycol-1).getStringCellValue();
+		return value;
 
-	public String readexcel(int myrow, int mycol, String mysheetname) throws IOException {
-		XSSFSheet getsheetvalue=readFile(Configuration.PROJECT_PATH+"/src/test/resources/TestData.xlsx", mysheetname);
-		String Value=getsheetvalue.getRow(myrow).getCell(mycol).toString();
-		return  Value;	
+}else {
+	System.out.println("Cell is NUll ...at " +myrow+" RowNum And ColNum"+mycol );
+	throw new Exception();
+}
 	}
 	
 	
-	/*
-	 * public static void main(String[] args) { ExcelReader r= new ExcelReader();
-	 * try { String valu=r.readexcel(0, 0, "TestData"); System.out.println(valu); }
-	 * catch (IOException e) { e.printStackTrace(); } }
-	 */
+	  public static void main(String[] args) throws Exception { ExcelReader r= new ExcelReader();
+	  try { 
+		  String valu=r.readexcel(3, 1, "TestData"); 
+		  System.out.println(valu);
+		  
+		  String valu1=r.readexcel(5, 1, "TestData"); 
+		  System.out.println(valu1);
+		  }
+	  catch (IOException e) { e.printStackTrace(); } }
+	 
 
 }

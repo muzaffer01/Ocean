@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+
+<suite name="Suite">
+  
+   <groups>  
+      <run>  
+         <include name="Smoke"/>  
+      </run>  
+   </groups> 
+  
+<test name="MySanity" >
+
+<!--  This is used to provide parameters to the testcase   <parameter name="Testing" value="Chrome"></parameter> --> 
+
+    <classes>    
+      	<class name="com.selenium.testcases.FirstTest"/>
+      	<class name="com.selenium.testcases.SecondTest"/> 
+    </classes>
+
+  </test> 
+ 
+  
+ 
+  
+
+</suite> 
+
+
