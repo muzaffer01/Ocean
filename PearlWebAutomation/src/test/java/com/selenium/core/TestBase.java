@@ -23,7 +23,7 @@ public class TestBase {
 	public  ExtentHtmlReporter htmlReporter;
 	public  ExtentReports extent;
 	public  ExtentTest logger;
-	public String Name;
+	public  String Name;
 	
 	
 	public void chromeInvoke() {
@@ -62,6 +62,7 @@ public class TestBase {
 	
 	@BeforeMethod(alwaysRun = true)
 	public void invokeBrowserandEnv() {
+		
 		mypropertyreader= new PropertyReader();
 		String getenvivalue=mypropertyreader.getvaluefrompropertyreader("EXEENV");
 		switch(getenvivalue) {
@@ -90,16 +91,17 @@ public class TestBase {
 	@BeforeTest(alwaysRun = true)
 	public void ReportSetup() {
 		mypropertyreader= new PropertyReader();
+		//Sufiyan to update
 		htmlReporter = new ExtentHtmlReporter("C:\\Users\\Ma Ateeq\\git\\Ocean\\PearlWebAutomation\\temp.html");
 		 extent = new ExtentReports ();
-		 extent.attachReporter(htmlReporter);
-		 extent.setSystemInfo("Environment", "UAT");
+		 extent.attachReporter(htmlReporter);//this is linking the content with the file..
+		 extent.setSystemInfo("Environment",mypropertyreader.getvaluefrompropertyreader("EXEENV"));
 		 extent.setSystemInfo("UserName", "Muzzafer");
 		 htmlReporter.config().setReportName("Functional Automated Reports..");
 	}
 	
 	@AfterTest(alwaysRun = true)
-	public void ReportSetupExt() {
+	public void ReportSetupExit() {
 		 extent.flush();
 	}
 

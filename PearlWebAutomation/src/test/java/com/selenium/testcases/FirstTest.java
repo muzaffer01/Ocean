@@ -17,9 +17,8 @@ public class FirstTest extends TestBase {
 
 	@Test(groups = {"sanity"})
 	public void formSubmitionVerification() throws Exception {
-		logger= extent.createTest("Form Submission Verification");
-		logger.log(Status.INFO, "page loaded");
-		
+		logger = extent.createTest("Form Submission Verification");
+		logger.log(Status.INFO, "page loaded");		
 		ExcelReader excelobj= new ExcelReader();
 		String name=excelobj.readexcel(3,1, Sheetname);
 		driver.findElement(By.xpath("//input[@id='txtName']")).sendKeys(name);
@@ -38,7 +37,7 @@ public class FirstTest extends TestBase {
 		Thread.sleep(3000);
 		Utils u= new Utils();
 		logger.log(Status.INFO,"SnapShot"+logger.addScreenCaptureFromPath(u.takeSnapShot(driver)));
-		 logger.log(Status.PASS, "Message Found");
+		logger.log(Status.PASS, "Message Found");
 	}
 
 

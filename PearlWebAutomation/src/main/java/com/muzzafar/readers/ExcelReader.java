@@ -41,28 +41,29 @@ public class ExcelReader {
 	
 	
 	public String readexcel(int myrow, int mycol, String mysheetname) throws Exception {
-	XSSFSheet mygetsheetvalue=readFile(Configuration.PROJECT_PATH+"/src/test/resources/TestData.xlsx", mysheetname);
-	Cell cell=mygetsheetvalue.getRow(myrow-1).getCell(mycol-1);
-if (cell!=null) {
-		String value=mygetsheetvalue.getRow(myrow-1).getCell(mycol-1).getStringCellValue();
-		return value;
+		XSSFSheet mygetsheetvalue = readFile(Configuration.PROJECT_PATH + "/src/test/resources/TestData.xlsx",mysheetname);
+		Cell cell = mygetsheetvalue.getRow(myrow - 1).getCell(mycol - 1);
+		if (cell != null) {
+			String value = mygetsheetvalue.getRow(myrow - 1).getCell(mycol - 1).getStringCellValue();
+			return value;
 
-}else {
-	System.out.println("Cell is NUll ...at " +myrow+" RowNum And ColNum"+mycol );
-	throw new Exception();
-}
+		} else {
+			System.out.println("Cell is NUll ...at " + myrow + " RowNum And ColNum" + mycol);
+			throw new Exception("Cell value is Null...");
+		}
 	}
-	
-	
-	  public static void main(String[] args) throws Exception { ExcelReader r= new ExcelReader();
-	  try { 
-		  String valu=r.readexcel(3, 1, "TestData"); 
-		  System.out.println(valu);
-		  
-		  String valu1=r.readexcel(5, 1, "TestData"); 
-		  System.out.println(valu1);
-		  }
-	  catch (IOException e) { e.printStackTrace(); } }
-	 
+
+	public static void main(String[] args) throws Exception {
+		ExcelReader r = new ExcelReader();
+		try {
+			String valu = r.readexcel(3, 1, "TestData");
+			System.out.println(valu);
+
+			String valu1 = r.readexcel(5, 1, "TestData");
+			System.out.println(valu1);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

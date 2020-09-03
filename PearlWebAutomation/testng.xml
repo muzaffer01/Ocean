@@ -6,7 +6,7 @@
   
    <groups>  
       <run>  
-         <include name="Smoke"/>  
+         <include name="sanity"/>  
       </run>  
    </groups> 
   
@@ -14,9 +14,12 @@
 
 <!--  This is used to provide parameters to the testcase   <parameter name="Testing" value="Chrome"></parameter> --> 
 
-    <classes>    
+    <classes>  
+      
       	<class name="com.selenium.testcases.FirstTest"/>
+      	
       	<class name="com.selenium.testcases.SecondTest"/> 
+      	
     </classes>
 
   </test> 
