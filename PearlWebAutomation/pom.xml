@@ -6,13 +6,49 @@
   <name>PearlWebAutomation</name>
   <description>Example Project for Selenium</description>
   
-  
+   <build>
+
+        <plugins>
+            <!-- Following plugin executes the testng tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.14.1</version>
+                <configuration>
+                    <!-- Suite testng xml file to consider for test execution -->
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${TestNG}</suiteXmlFile>
+<!--                         <suiteXmlFile>suites-test-testng.xml</suiteXmlFile> -->
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+            <!-- Compiler plugin configures the java version to be usedfor compiling 
+                the code -->
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+        
+        
+    </build>
   <dependencies>
   <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 <dependency>
     <groupId>org.seleniumhq.selenium</groupId>
     <artifactId>selenium-java</artifactId>
     <version>3.141.59</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.testng/testng -->
+<dependency>
+    <groupId>org.testng</groupId>
+    <artifactId>testng</artifactId>
+    <version>7.3.0</version>
+    <scope>test</scope>
 </dependency>
 
 <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->

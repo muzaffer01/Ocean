@@ -15,9 +15,8 @@
 <!--  This is used to provide parameters to the testcase   <parameter name="Testing" value="Chrome"></parameter> --> 
 
     <classes>  
-      
-      	<class name="com.selenium.testcases.FirstTest"/>
-      	
+<!--       <class name="com.selenium.testcases.*"/>    To run groups in all classes	 -->
+      	<class name="com.selenium.testcases.FirstTest"/>    	
       	<class name="com.selenium.testcases.SecondTest"/> 
       	
     </classes>

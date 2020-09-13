@@ -1,9 +1,14 @@
 package com.selenium.core;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
@@ -61,23 +66,44 @@ public class TestBase {
 	}
 	
 	@BeforeMethod(alwaysRun = true)
-	public void invokeBrowserandEnv() {
-		
+	public void invokeBrowserandEnv() throws MalformedURLException {
 		mypropertyreader= new PropertyReader();
-		String getenvivalue=mypropertyreader.getvaluefrompropertyreader("EXEENV");
-		switch(getenvivalue) {
-		case "UAT":
-			browserSelection();
-			String getuaturl=mypropertyreader.getvaluefrompropertyreader("UAT");
-			driver.get(getuaturl);
-			break;
-			
-		case "SIT":
-			browserSelection();
-			String getsiturl=mypropertyreader.getvaluefrompropertyreader("SIT");
-			driver.get(getsiturl);
-			break;
+		String serverRun=mypropertyreader.getvaluefrompropertyreader("RunONServer");
+		if (serverRun.equalsIgnoreCase("true")) {
+			String getenvivalue=mypropertyreader.getvaluefrompropertyreader("EXEENV");
+			switch(getenvivalue) {
+			case "UAT":
+				DesiredCapabilities cap= new DesiredCapabilities().chrome();
+				cap.setPlatform(Platform.LINUX);
+				cap.setBrowserName("chrome");
+				driver=new RemoteWebDriver(new URL("http://192.168.1.100:4444/wd/hub"), cap);
+				String getuaturl=mypropertyreader.getvaluefrompropertyreader("UAT");
+				driver.get(getuaturl);
+				break;
+				
+			case "SIT":
+				
+				String getsiturl=mypropertyreader.getvaluefrompropertyreader("SIT");
+				driver.get(getsiturl);
+				break;
+			}
+		}else {
+			String getenvivalue=mypropertyreader.getvaluefrompropertyreader("EXEENV");
+			switch(getenvivalue) {
+			case "UAT":
+				browserSelection();
+				String getuaturl=mypropertyreader.getvaluefrompropertyreader("UAT");
+				driver.get(getuaturl);
+				break;
+				
+			case "SIT":
+				browserSelection();
+				String getsiturl=mypropertyreader.getvaluefrompropertyreader("SIT");
+				driver.get(getsiturl);
+				break;
+			}
 		}
+		
 	}	
 	
 	
