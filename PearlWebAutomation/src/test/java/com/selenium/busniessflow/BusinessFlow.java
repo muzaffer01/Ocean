@@ -9,6 +9,7 @@ import com.aventstack.extentreports.Status;
 import com.muzzafar.readers.ExcelReader;
 import com.selenium.core.TestBase;
 import com.selenium.muzzar.util.Utils;
+import com.selenium.pages.HomePage;
 import com.selenium.pages.LoginPage;
 
 public class BusinessFlow extends TestBase {
@@ -58,8 +59,7 @@ public void inValidFormSubmit() throws Exception {
 		String name=excelobj.readexcel(3,1, Sheetname);
 		/*
 		 * driver.findElement(By.xpath("//input[@id='txtName']")).sendKeys(name);
-		 * driver.findElement(By.xpath("//input[@id='txtAddress']")).
-		 * sendKeys("this is test2");
+		 * driver.findElement(By.xpath("//input[@id='txtAddress']")).sendKeys("this is test2");
 		 * driver.findElement(By.xpath("//input[@id=\'txtZipcode\']")).sendKeys("58752")
 		 * ;
 		 */
@@ -74,8 +74,15 @@ public void inValidFormSubmit() throws Exception {
 		driver.findElement(By.xpath("//input[@value='m']")).click();
 		driver.findElement(By.xpath("//input[@value='r']")).click();
 		
-		driver.findElement(By.xpath("//input[@id='txtPhone']")).sendKeys("123456");
-		driver.findElement(By.xpath("//input[@id='txtEmail']")).sendKeys("abc@xyz.com");
+		//PageFactory Concept
+		HomePage hp = new HomePage(driver);
+		hp.send_phone_number("2222333333");
+		hp.send_email("abcd@abcd.com");
+		
+// 		Home Page can be written with Page Factory concept
+//		It allows to findelments once and use to pass values in numerous places.
+//		driver.findElement(By.xpath("//input[@id='txtPhone']")).sendKeys("123456");
+//		driver.findElement(By.xpath("//input[@id='txtEmail']")).sendKeys("abc@xyz.com");
 		
 		driver.findElement(By.xpath("//input[@id='txtPassword']")).sendKeys("abcdef");
 		driver.findElement(By.xpath("//input[@id='txtPWVerified']")).sendKeys("abcdef");

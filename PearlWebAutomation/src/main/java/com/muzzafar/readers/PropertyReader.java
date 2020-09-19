@@ -11,7 +11,7 @@ public class PropertyReader {
 	
 	public String getvaluefrompropertyreader (String key) { 
 		String myreturnvalue = null;	
-		try (InputStream input = new FileInputStream(Configuration.PROJECT_PATH+"\\src\\test\\resources\\property.properties")) {
+		try (InputStream input = new FileInputStream(Configuration.PROJECT_PATH+"/src/test/resources/property.properties")) {
             Properties prop = new Properties();
             prop.load(input);
             myreturnvalue = prop.getProperty(key);

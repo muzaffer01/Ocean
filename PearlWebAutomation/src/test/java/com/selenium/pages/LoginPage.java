@@ -9,16 +9,17 @@ public class LoginPage {
 
 	WebDriver driver;
 	
-	public LoginPage(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
+	public LoginPage(WebDriver localdriver) {
+		driver = localdriver;
+		PageFactory.initElements(localdriver, this); 
+		// OR you can use this statement
+		//PageFactory.initElements(localdriver, LoginPage.class);
+		// "this" is an object instance of current class
 		}
 	
-	@FindBy(xpath = "//input[@id='txtName']")
-	WebElement name;
+	@FindBy(xpath = "//input[@id='txtName']") WebElement name;
 	
-	@FindBy(xpath = "//input[@id='txtAddress']")
-	WebElement address;
+	@FindBy(xpath = "//input[@id='txtAddress']") WebElement address;
 	
 	@FindBy(xpath = "//input[@id='txtZipcode']")
 	WebElement zipcode;
