@@ -14,7 +14,7 @@ public class FirstTest extends BusinessFlow {
 
 	@Test(groups = {"smoke"})
 	public void formSubmitionVerification2() throws Exception {	
-		validFormSubmit();
+		inValidFormSubmit();
 	}
 
 }

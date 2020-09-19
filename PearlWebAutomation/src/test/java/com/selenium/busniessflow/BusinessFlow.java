@@ -40,15 +40,11 @@ public void inValidFormSubmit() throws Exception {
 	String ExpectedString = "Please enter a 5-digit zip code!";
 	if (ele.equalsIgnoreCase(ExpectedString)) {
 		Utils u = new Utils();
-		try {
-			u.takeSnapShot(driver);
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
+		logger.log(Status.INFO,"SnapShot"+logger.addScreenCaptureFromPath(u.takeSnapShot(driver)));
 	}		
 	Assert.assertEquals(ele, ExpectedString);
 	Thread.sleep(3000);
+	
 
 }
 
@@ -88,9 +84,15 @@ public void inValidFormSubmit() throws Exception {
 		driver.findElement(By.xpath("//input[@id='txtPWVerified']")).sendKeys("abcdef");
 		driver.findElement(By.xpath("//input[@id='btnSubmit']")).click();
 		Thread.sleep(3000);
-		Utils u= new Utils();
+		Utils u = new Utils();
+		/*
+		 * try { u.takeSnapShot(driver); } catch (Exception e) {
+		 * 
+		 * e.printStackTrace(); }
+		 */
 		logger.log(Status.INFO,"SnapShot"+logger.addScreenCaptureFromPath(u.takeSnapShot(driver)));
 		logger.log(Status.PASS, "Message Found");
+		
 	}
 	
 	
