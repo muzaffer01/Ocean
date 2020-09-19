@@ -1,2 +1,7 @@
 
 // This is src//test/resources
+
+
+//forward and backward slash used on different OS
+//  WINDOWS uses both Single forward /    or Double back \\
+//  MAC and LINUX uses Single forward /  ONLY

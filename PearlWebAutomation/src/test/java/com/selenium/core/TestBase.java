@@ -89,6 +89,15 @@ public class TestBase {
 				DesiredCapabilities cap= new DesiredCapabilities().chrome();
 				cap.setPlatform(Platform.LINUX);
 				cap.setBrowserName("chrome");
+			
+				//forward and backward slash used on different OS
+				//  WINDOWS uses both Single forward /    or Double back \\
+				//  MAC and LINUX uses Single forward /  ONLY
+				
+//				another way of writing below step
+//				URL myurl = new URL("http://192.168.1.100:4444/wd/hub");
+//				driver = new RemoteWebDriver(myurl, cap);
+				
 				driver=new RemoteWebDriver(new URL("http://192.168.1.100:4444/wd/hub"), cap);
 				String getuaturl=mypropertyreader.getvaluefrompropertyreader("UAT");
 				driver.get(getuaturl);
