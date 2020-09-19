@@ -28,20 +28,33 @@ public class TestBase {
 	public  ExtentHtmlReporter htmlReporter;
 	public  ExtentReports extent;
 	public  ExtentTest logger;
-	public  String Name;
+	public  String Name;	
 	
 	
 	public void chromeInvoke() {
-		System.setProperty("webdriver.chrome.driver", Configuration.PROJECT_PATH+"\\src\\test\\resources\\Binaries\\chromedriver.exe");
-		driver=new ChromeDriver();
+		mypropertyreader =new PropertyReader();
+		String Os=mypropertyreader.getvaluefrompropertyreader("OS");
+		if (Os.equalsIgnoreCase("IOS")) {
+			driver=new ChromeDriver();
+		}else {
+			System.setProperty("webdriver.chrome.driver", Configuration.PROJECT_PATH+"/src/test/resources/Binaries/chromedriver.exe");
+			driver=new ChromeDriver();
+		}		
 	}
 	
 	public void ffInvoke() {
-		System.setProperty("webdriver.gecko.driver", Configuration.PROJECT_PATH+"\\src\\test\\resources\\Binaries\\geckodriver.exe");
-		DesiredCapabilities capabilities=DesiredCapabilities.firefox();
-	    capabilities.setCapability("marionette", true);
-		driver=new FirefoxDriver(capabilities);
-		
+		mypropertyreader =new PropertyReader();
+		String Os=mypropertyreader.getvaluefrompropertyreader("OS");
+		if (Os.equalsIgnoreCase("IOS")) {
+			DesiredCapabilities capabilities=DesiredCapabilities.firefox();
+		    capabilities.setCapability("marionette", true);
+			driver=new FirefoxDriver(capabilities);
+		}else {
+			System.setProperty("webdriver.gecko.driver", Configuration.PROJECT_PATH+"/src/test/resources/Binaries/geckodriver.exe");
+			DesiredCapabilities capabilities=DesiredCapabilities.firefox();
+		    capabilities.setCapability("marionette", true);
+			driver=new FirefoxDriver(capabilities);
+		}		
 	}
 	
 	
@@ -111,6 +124,7 @@ public class TestBase {
 	public void tearDownBrowser() {
 		//driver.close();
 		driver.quit();
+		extent.flush();
 		
 	}
 	
