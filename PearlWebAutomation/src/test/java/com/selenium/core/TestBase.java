@@ -26,11 +26,13 @@ public class TestBase {
 	PropertyReader mypropertyreader;
 	
 	public  ExtentHtmlReporter htmlReporter;
-	public  ExtentReports extent;
+	public static ExtentReports extent;
 	public  ExtentTest logger;
 	public  String Name;	
-	
-	
+	public static final String AUTOMATE_USERNAME = "mahboobsiddiqui1";
+ 	public static final String AUTOMATE_ACCESS_KEY = "esfjCz3ysNYunqnGqpEk"; 	
+ 	public static final String URL = "https://" + AUTOMATE_USERNAME + ":" + AUTOMATE_ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
+ 	
 	public void chromeInvoke() {
 		mypropertyreader =new PropertyReader();
 		String Os=mypropertyreader.getvaluefrompropertyreader("OS");
@@ -84,12 +86,26 @@ public class TestBase {
 		String serverRun=mypropertyreader.getvaluefrompropertyreader("RunONServer");
 		if (serverRun.equalsIgnoreCase("true")) {
 			String getenvivalue=mypropertyreader.getvaluefrompropertyreader("EXEENV");
+			 	
+			
 			switch(getenvivalue) {
 			case "UAT":
-				DesiredCapabilities cap= new DesiredCapabilities().chrome();
-				cap.setPlatform(Platform.LINUX);
-				cap.setBrowserName("chrome");
-			
+				
+				
+				DesiredCapabilities caps = new DesiredCapabilities();
+			    caps.setCapability("os_version", "10");
+			    caps.setCapability("resolution", "1920x1080");
+			    caps.setCapability("browser", "Chrome");
+			    caps.setCapability("browser_version", "75.0");
+			    caps.setCapability("os", "Windows");
+			    caps.setCapability("name", "BStack-[Java] Sample Test"); // test name
+			    caps.setCapability("build", "BStack Build Number 1"); // CI/CD job or build name
+				
+			    /*
+				 * DesiredCapabilities cap= new DesiredCapabilities().chrome();
+				 * cap.setPlatform(Platform.LINUX); cap.setBrowserName("chrome");
+				 */
+			    
 				//forward and backward slash used on different OS
 				//  WINDOWS uses both Single forward /    or Double back \\
 				//  MAC and LINUX uses Single forward /  ONLY
@@ -98,15 +114,30 @@ public class TestBase {
 //				URL myurl = new URL("http://192.168.1.100:4444/wd/hub");
 //				driver = new RemoteWebDriver(myurl, cap);
 				
-				driver=new RemoteWebDriver(new URL("http://192.168.1.100:4444/wd/hub"), cap);
+				driver=new RemoteWebDriver(new URL("http://192.168.1.100:4444/wd/hub"), caps);
 				String getuaturl=mypropertyreader.getvaluefrompropertyreader("UAT");
 				driver.get(getuaturl);
 				break;
 				
 			case "SIT":
 				
-				String getsiturl=mypropertyreader.getvaluefrompropertyreader("SIT");
+				DesiredCapabilities caps1 = new DesiredCapabilities();
+			    caps1.setCapability("os_version", "10");
+			    caps1.setCapability("resolution", "1920x1080");
+			    caps1.setCapability("browser", "Chrome");
+			    caps1.setCapability("browser_version", "75.0");
+			    caps1.setCapability("os", "Windows");
+			    caps1.setCapability("name", "BStack-[Java] Sample Test"); // test name
+			    caps1.setCapability("build", "BStack Build Number 1"); // CI/CD job or build name
+				
+			    driver=new RemoteWebDriver(new URL(URL), caps1);
+				String getsiturl=mypropertyreader.getvaluefrompropertyreader("UAT");
 				driver.get(getsiturl);
+				
+				/*
+				 * String getsiturl=mypropertyreader.getvaluefrompropertyreader("SIT");
+				 * driver.get(getsiturl);
+				 */
 				break;
 			}
 		}else {
@@ -133,7 +164,6 @@ public class TestBase {
 	public void tearDownBrowser() {
 		//driver.close();
 		driver.quit();
-		extent.flush();
 		
 	}
 	
@@ -147,6 +177,7 @@ public class TestBase {
 		 extent.setSystemInfo("Environment",mypropertyreader.getvaluefrompropertyreader("EXEENV"));
 		 extent.setSystemInfo("UserName", "Muzzafer");
 		 htmlReporter.config().setReportName("Functional Automated Reports..");
+		 extent.flush();
 	}
 	
 	@AfterTest(alwaysRun = true)

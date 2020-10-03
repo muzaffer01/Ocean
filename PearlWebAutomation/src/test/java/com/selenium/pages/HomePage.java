@@ -12,7 +12,7 @@ public class HomePage {
 	
 	public HomePage (WebDriver localdriver) {
 		driver = localdriver;
-		PageFactory.initElements(localdriver, HomePage.class);
+		PageFactory.initElements(localdriver, this);
 	}
 	
 	@FindBy(xpath = "//input[@id='txtPhone']" ) WebElement phone_number_we;

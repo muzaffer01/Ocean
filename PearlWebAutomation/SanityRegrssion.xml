@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
 
-<suite name="Suite" >
+<suite name="Suite" parallel="methods" thread-count="3" >
   
    <groups>  
       <run>  
@@ -15,16 +15,18 @@
 <!--  This is used to provide parameters to the testcase   <parameter name="Testing" value="Chrome"></parameter> --> 
 
     <classes>  
-<!--       <class name="com.selenium.testcases.*"/>    To run groups in all classes	 -->
-      	<class name="com.selenium.testcases.FirstTest"/>    	
+<!--    <class name="com.selenium.testcases.*"/>    To run groups in all classes	 -->
+      	<class name="com.selenium.testcases.FirstTest"/>
       	<class name="com.selenium.testcases.SecondTest"/> 
+      	<class name="com.selenium.testcases.ThirdTest3"/> 
+      	
       	
     </classes>
 
   </test> 
  
   
- 
+  
   
 
 </suite> 
