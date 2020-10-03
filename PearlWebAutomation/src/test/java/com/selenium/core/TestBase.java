@@ -171,7 +171,10 @@ public class TestBase {
 	public void ReportSetup() {
 		mypropertyreader= new PropertyReader();
 		//Sufiyan to update
-		htmlReporter = new ExtentHtmlReporter("C:\\Users\\Ma Ateeq\\git\\Ocean\\PearlWebAutomation\\temp.html");
+		   double d= Math.random();
+		String fileName=Double.toString(d);
+		String dest = Configuration.PROJECT_PATH+"\\"+fileName+"_Report.html";
+		htmlReporter = new ExtentHtmlReporter(dest);
 		 extent = new ExtentReports ();
 		 extent.attachReporter(htmlReporter);//this is linking the content with the file..
 		 extent.setSystemInfo("Environment",mypropertyreader.getvaluefrompropertyreader("EXEENV"));
