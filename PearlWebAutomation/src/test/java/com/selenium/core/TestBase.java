@@ -98,7 +98,7 @@ public class TestBase {
 //				URL myurl = new URL("http://192.168.1.100:4444/wd/hub");
 //				driver = new RemoteWebDriver(myurl, cap);
 				
-				driver=new RemoteWebDriver(new URL("http://192.168.1.100:4444/wd/hub"), cap);
+				driver=new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), cap);
 				String getuaturl=mypropertyreader.getvaluefrompropertyreader("UAT");
 				driver.get(getuaturl);
 				break;
@@ -140,7 +140,7 @@ public class TestBase {
 	@BeforeTest(alwaysRun = true)
 	public void ReportSetup() {
 		mypropertyreader= new PropertyReader();
-		//Sufiyan to update
+		//Sufyan to update
 		htmlReporter = new ExtentHtmlReporter("C:\\Users\\Ma Ateeq\\git\\Ocean\\PearlWebAutomation\\temp.html");
 		 extent = new ExtentReports ();
 		 extent.attachReporter(htmlReporter);//this is linking the content with the file..
