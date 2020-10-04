@@ -17,7 +17,9 @@ public class BusinessFlow extends TestBase {
 String Sheetname="TestData1";
 
 public void inValidFormSubmit() throws Exception {
+	
 	logger = extent.createTest("Invlaid Form Submission Verification");
+	
 	System.out.println("Invlaid Form Submission Verification");
 	logger.log(Status.INFO, "page loaded");		
 	ExcelReader excelobj= new ExcelReader();
@@ -44,8 +46,6 @@ public void inValidFormSubmit() throws Exception {
 	}		
 	Assert.assertEquals(ele, ExpectedString);
 	Thread.sleep(3000);
-	
-
 }
 
 	public void validFormSubmit() throws Exception {
@@ -92,6 +92,7 @@ public void inValidFormSubmit() throws Exception {
 		 */
 		logger.log(Status.INFO,"SnapShot"+logger.addScreenCaptureFromPath(u.takeSnapShot(driver)));
 		logger.log(Status.PASS, "Message Found");
+		
 		
 	}
 	

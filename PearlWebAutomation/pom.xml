@@ -18,7 +18,8 @@
                     <!-- Suite testng xml file to consider for test execution -->
                     <suiteXmlFiles>
                         <suiteXmlFile>${TestNG}</suiteXmlFile>
-<!--                         <suiteXmlFile>suites-test-testng.xml</suiteXmlFile> -->
+<!--                     
+<suiteXmlFile>suites-test-testng.xml</suiteXmlFile> -->
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
